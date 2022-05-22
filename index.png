@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<head>    
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    
+        <script>
+            L_NO_TOUCH = false;
+            L_DISABLE_3D = false;
+        </script>
+    
+    <style>html, body {width: 100%;height: 100%;margin: 0;padding: 0;}</style>
+    <style>#map {position:absolute;top:0;bottom:0;right:0;left:0;}</style>
+    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.6.0/dist/leaflet.js"></script>
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.6.0/dist/leaflet.css"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/python-visualization/folium/folium/templates/leaflet.awesome.rotate.min.css"/>
+    
+            <meta name="viewport" content="width=device-width,
+                initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+            <style>
+                #map_1acb829eff8c42b63df39e01b730317c {
+                    position: relative;
+                    width: 100.0%;
+                    height: 100.0%;
+                    left: 0.0%;
+                    top: 0.0%;
+                }
+            </style>
+        
+</head>
+<body>    
+    
+            <div class="folium-map" id="map_1acb829eff8c42b63df39e01b730317c" ></div>
+        
+</body>
+<script>    
+    
+            var map_1acb829eff8c42b63df39e01b730317c = L.map(
+                "map_1acb829eff8c42b63df39e01b730317c",
+                {
+                    center: [34.0485, -118.25854],
+                    crs: L.CRS.EPSG3857,
+                    zoom: 15,
+                    zoomControl: true,
+                    preferCanvas: false,
+                }
+            );
+
+            
+
+        
+    
+            var tile_layer_d8f70f3611bb0d618c1f746014a1a6a6 = L.tileLayer(
+                "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
+                {"attribution": "Data by \u0026copy; \u003ca href=\"http://openstreetmap.org\"\u003eOpenStreetMap\u003c/a\u003e, under \u003ca href=\"http://www.openstreetmap.org/copyright\"\u003eODbL\u003c/a\u003e.", "detectRetina": false, "maxNativeZoom": 18, "maxZoom": 18, "minZoom": 0, "noWrap": false, "opacity": 1, "subdomains": "abc", "tms": false}
+            ).addTo(map_1acb829eff8c42b63df39e01b730317c);
+        
+    
+            var marker_5bad299ec328e5b68e78908dfa0c2e39 = L.marker(
+                [34.04862, -118.25874],
+                {}
+            ).addTo(map_1acb829eff8c42b63df39e01b730317c);
+        
+    
+            var icon_1e37b977b721cfc329e64600e53ad738 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "red", "prefix": "glyphicon"}
+            );
+            marker_5bad299ec328e5b68e78908dfa0c2e39.setIcon(icon_1e37b977b721cfc329e64600e53ad738);
+        
+    
+            var marker_1b48290627d8bcba8fecbace1d652751 = L.marker(
+                [34.0485, -118.25854],
+                {}
+            ).addTo(map_1acb829eff8c42b63df39e01b730317c);
+        
+    
+            var marker_e01f831d91a1e61fdd87e8fca1d26ebe = L.marker(
+                [34.0484, -118.26095],
+                {}
+            ).addTo(map_1acb829eff8c42b63df39e01b730317c);
+        
+    
+            var marker_fed0225cb8f52831a5628ad855a7cde5 = L.marker(
+                [34.04613, -118.25759],
+                {}
+            ).addTo(map_1acb829eff8c42b63df39e01b730317c);
+        
+</script>
