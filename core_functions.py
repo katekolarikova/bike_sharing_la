@@ -9,8 +9,13 @@ import time
 import openrouteservice as ors
 import API_KEYS
 
-class Core_Functions():
+"""
+Background of the application
+"""
 
+class CoreFunctions():
+
+    # scraping the live feed data about bike stations
     def download_live_data(self):
         URL = 'http://bikeshare.metro.net/stations/json/'
         USER_AGENT = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.14; rv:65.0) Gecko/20100101 Firefox/65.0"
@@ -20,11 +25,13 @@ class Core_Functions():
         f.write(resp.text)
         f.close()
 
+    # Taking neccesary data about bike stations and store them into dictionary
+    # street, location, num of available bikes, num of available bikes, distance from user (-1 for not count)
     def parse_geo_data_stations(self):
         file = open('map_data.json')
         read = gpd.read_file(file)
         read = read.reset_index()
-        # dictionary with neccesary informations  - street, location, num of available bikes, num of available bikes, distance from user (-1 for not count)
+
         station_info = {}
         for index, row in read.iterrows():
             coordinates = (row['latitude'], row['longitude'])
@@ -33,7 +40,9 @@ class Core_Functions():
 
         return station_info
 
-    def print_error(self,error_message):
+    # displaying the error message box
+    # error_message : text we would like to display
+    def print_error(self, error_message):
         msg = QMessageBox()
         msg.setIcon(QMessageBox.Critical)
         msg.setText("Opps")
@@ -41,6 +50,9 @@ class Core_Functions():
         msg.setWindowTitle("Error")
         msg.exec_()
 
+    # accept list of locations, add them to the map and save the map
+    # user_location: position of the user
+    # points: list of location - available stations
     def draw_map_points(self, user_position, points):
         map = folium.Map(location=user_position, zoom_start=15)
         icon = folium.Icon(color="red")
@@ -52,58 +64,66 @@ class Core_Functions():
         data = io.BytesIO()
         map.save(data, close_file=False)
 
+    # save map without points or routes
     def clean_map(self):
         map = folium.Map(location=(34.04850, -118.25894), zoom_start=15)
         map.save('index.html')
         data = io.BytesIO()
         map.save(data, close_file=False)
 
+    # function returns k stations with available bikes or docks
+    # location of these station is added into the map
+    # user_position: position of the user
+    # num_k : how many stations should be returned
+    # dock_bikes : info if we look for stations with available bikes or docks
+    def find_nearest_stations(self, user_position, num_k, dock_bikes):
+        points = []
+        nearest_stations = []
+        type = 'bikes'
 
-    def find_nearest_stations(self, position, num_k, dock_bikes):
-            points = []
-            nearest_stations = []
-            type='bikes'
+        self.download_live_data()
+        try:
+            if dock_bikes == 'docks':
+                type = 'docks'
+            k_stations = int(num_k)
+            station_info = self.parse_geo_data_stations()
+            position_data_split = user_position.split(',')
+            user_position = (float(position_data_split[0][1:]), float(position_data_split[1][:-1]))
+        except ValueError:
+            self.print_error('Something went wrong... Please check the input validity')
+            return -1
 
-            self.download_live_data()
-            try:
-                if dock_bikes == 'docks':
-                    type = 'docks'
-                k_stations = int(num_k)
-                station_info = self.parse_geo_data_stations()
-                position_data_split = position.split(',')
-                user_position = (float(position_data_split[0][1:]), float(position_data_split[1][:-1]))
-            except ValueError:
-                self.print_error('Something went wrong... Please check the input validity')
-                return -1
+        for item in station_info.items():
+            if item[1][type] > 0:  # count distance for stations with available bikes
+                item[1]['distance'] = gd(user_position, item[1]['coordinates']).kilometers
+        station_info = sorted(station_info.items(), key=lambda item: item[1]['distance'], reverse=False)
+        # print the nearest stations -  skip the stations without distance
+        station_counter = 0
+        for item in station_info:
+            if item[1]['distance'] != -1:
+                points.append(item[1]['coordinates'])
+                print(item)
+                nearest_stations.append(item)
+                station_counter += 1
+            if station_counter == k_stations:  # check how many stations was already printed
+                break
 
+        if len(points) < k_stations:
+            self.print_error('Not enough stations available')
 
-            for item in station_info.items():
-                if item[1][type] > 0:  # count distance for stations with available bikes
-                    item[1]['distance'] = gd(user_position, item[1]['coordinates']).kilometers
-            station_info = sorted(station_info.items(), key=lambda item: item[1]['distance'], reverse=False)
-            # print the nearest stations -  skip the stations without distance
-            station_counter = 0
-            for item in station_info:
-                if item[1]['distance'] != -1:
-                    points.append(item[1]['coordinates'])
-                    print(item)
-                    nearest_stations.append(item)
-                    station_counter += 1
-                if station_counter == k_stations:  # check how many stations was already printed
-                    break
+        self.draw_map_points(user_position, points)
 
-            if len(points)<k_stations:
-                self.print_error('Not enough stations available')
+        return nearest_stations
 
-            self.draw_map_points(user_position,points)
-
-            return nearest_stations
-
-    def find_shortest_route(self, start_location, end_location, closest_stations):
+    # find shortest route between two points using walk and share bikes
+    # start_location: first point
+    # end_location: second point
+    def find_shortest_route(self, start_location, end_location):
         # direct route by walks
         ors_key = API_KEYS.OPEN_ROUTE
         client = ors.Client(key=ors_key)
         available_routes = []
+        closest_stations = self.find_nearest_stations(str(start_location), 6, 'bikes')
 
         direct_route_coordinates = ((start_location[1], start_location[0]), (end_location[1], end_location[0]))
         route_walking = client.directions(coordinates=direct_route_coordinates, profile='foot-walking',
@@ -114,20 +134,19 @@ class Core_Functions():
         for item in closest_stations:
             # route from start point to the station
             start_to_station_coordinates = (
-            (start_location[1], start_location[0]), (item[1]['coordinates'][1], item[1]['coordinates'][0]))
+                (start_location[1], start_location[0]), (item[1]['coordinates'][1], item[1]['coordinates'][0]))
             start_to_station_route = client.directions(coordinates=start_to_station_coordinates, profile='foot-walking',
                                                        format='geojson',
                                                        units='km')
 
             # route from station to the end point
             from_station_to_end_coordinates = (
-            (item[1]['coordinates'][1], item[1]['coordinates'][0]), (end_location[1], end_location[0]))
+                (item[1]['coordinates'][1], item[1]['coordinates'][0]), (end_location[1], end_location[0]))
             from_station_to_end_route = client.directions(coordinates=from_station_to_end_coordinates,
                                                           profile='cycling-regular',
 
-                                                      format='geojson', units='km')
-            time.sleep(2)
-            print('sleep 1')
+                                                          format='geojson', units='km')
+            time.sleep(0.5)
             # totral duration between start and station + station to end
             total_duration = start_to_station_route['features'][0]['properties']['summary']['duration'] + \
                              from_station_to_end_route['features'][0]['properties']['summary']['duration']
@@ -143,7 +162,8 @@ class Core_Functions():
         available_routes = sorted(available_routes, key=lambda item: item['duration'], reverse=False)
         return available_routes[0]
 
-    def print_route(self, start_location, end_location,route):
+    # add given route to the folium map
+    def draw_route_map(self, start_location, end_location, route):
         map = folium.Map(location=start_location, zoom_start=13)
         style = {'fillColor': '#228B22', 'lineColor': '#228B22'}
         folium.Marker(start_location, icon=folium.Icon(color='red')).add_to(map)
@@ -161,12 +181,15 @@ class Core_Functions():
         data = io.BytesIO()
         map.save(data, close_file=False)
 
+    #finding route between two points
+    # start_location: first point
+    # end_location: second point
     def find_route_between_points(self, start_location, end_location):
         # (34.04850, -118.25894)
         # (34.02851,-118.25667)
 
+        # parse data from user
         try:
-            closest_stations = self.find_nearest_stations(start_location, 6, 'bikes')
             start_location_split = start_location.split(',')
             start_location = (float(start_location_split[0][1:]), float(start_location_split[1][:-1]))
 
@@ -176,7 +199,5 @@ class Core_Functions():
             self.print_error('Something went wrong... Please check the input validity')
             return -1
 
-        shortest_route = self.find_shortest_route(start_location,end_location, closest_stations)
-        self.print_route(start_location, end_location, shortest_route)
-
-
+        shortest_route = self.find_shortest_route(start_location, end_location)
+        self.draw_route_map(start_location, end_location, shortest_route)

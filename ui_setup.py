@@ -1,8 +1,11 @@
 import io
 from PyQt5 import QtCore, QtGui, QtWidgets, QtWebEngineWidgets
 from folium import folium
-from core_functions import Core_Functions
+from core_functions import CoreFunctions
 
+"""
+Set up the GUI
+"""
 class Ui_MainWindow(object):
 
     def draw_map(self):
@@ -93,7 +96,7 @@ class Ui_MainWindow(object):
         self.search_bikes_button = QtWidgets.QPushButton(self.centralwidget)
         self.search_bikes_button.setGeometry(QtCore.QRect(430, 240, 90, 28))
         self.search_bikes_button.setObjectName("search_bikes_button")
-        cf=Core_Functions()
+        cf=CoreFunctions()
         self.search_bikes_button.clicked.connect(lambda:
                                                  cf.find_nearest_stations(self.user_location_input.text(),
                                                                                                  self.k_bikes_input.text(),'bikes'))
@@ -176,15 +179,6 @@ class Ui_MainWindow(object):
 
         self.retranslateUi(MainWindow)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
-
-
-
-
-
-
-
-
-
 
 
     # set text
