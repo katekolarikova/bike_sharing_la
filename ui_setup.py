@@ -1,13 +1,14 @@
 import io
-
 from PyQt5 import QtCore, QtGui, QtWidgets, QtWebEngineWidgets
-from PyQt5.QtWebEngineWidgets import QWebEngineView
-from PyQt5.QtWidgets import QVBoxLayout
 from folium import folium
-
 from core_functions import Core_Functions
 
 class Ui_MainWindow(object):
+
+    def draw_map(self):
+        with open('index.html', 'rb') as f:
+            data = io.BytesIO(f.read())
+        self.view.setHtml(data.getvalue().decode())
 
     #creating main window elements
     def setupUi(self, MainWindow):
@@ -30,8 +31,8 @@ class Ui_MainWindow(object):
         font.setWeight(75)
 
         lay = QtWidgets.QHBoxLayout(self.centralwidget)
-
-
+        lay.addWidget(self.view, stretch=1)
+        self.draw_map()
 
 
         MainWindow.setCentralWidget(self.centralwidget)
@@ -44,15 +45,6 @@ class Ui_MainWindow(object):
         MainWindow.setStatusBar(self.statusbar)
 
 
-        lay.addWidget(self.view, stretch=1)
-
-        m = folium.Map(
-            location=[45.5236, -122.6750], tiles="Stamen Toner", zoom_start=13
-        )
-
-        data = io.BytesIO()
-        m.save(data, close_file=False)
-        self.view.setHtml(data.getvalue().decode())
         # set main heading and description
         self.heading_label.setFont(font)
         self.heading_label.setObjectName("heading_label")
@@ -103,8 +95,10 @@ class Ui_MainWindow(object):
         self.search_bikes_button.setObjectName("search_bikes_button")
         cf=Core_Functions()
         self.search_bikes_button.clicked.connect(lambda:
-                                                 cf.find_nearest_stations_with_bikes(self.user_location_input.text(),
-                                                                                                 self.k_bikes_input.text()))
+                                                 cf.find_nearest_stations(self.user_location_input.text(),
+                                                                                                 self.k_bikes_input.text(),'bikes'))
+
+        self.search_bikes_button.clicked.connect(lambda :self.draw_map())
 
         #find k stations with available docks
         self.Stations_docks_lable = QtWidgets.QLabel(self.centralwidget)
@@ -130,6 +124,13 @@ class Ui_MainWindow(object):
         self.search_docks_button = QtWidgets.QPushButton(self.centralwidget)
         self.search_docks_button.setGeometry(QtCore.QRect(430, 350, 90, 28))
         self.search_docks_button.setObjectName("search_docks_button")
+
+        self.search_docks_button.clicked.connect(lambda:
+                                                 cf.find_nearest_stations(self.user_location_input.text(),
+                                                                                     self.k_docks_input.text(),'docks'))
+
+
+        self.search_docks_button.clicked.connect(lambda: self.draw_map())
 
         # find route between two points
         self.route_label = QtWidgets.QLabel(self.centralwidget)
@@ -167,19 +168,16 @@ class Ui_MainWindow(object):
         self.shortest_route_button.setGeometry(QtCore.QRect(430, 460, 90, 28))
         self.shortest_route_button.setObjectName("shortest_route_button")
 
+        self.shortest_route_button.clicked.connect(lambda:
+                                                       cf.find_route_between_points(self.point1_input.text(),
+                                                                                self.point2_input.text()))
+
+        self.shortest_route_button.clicked.connect(lambda: self.draw_map())
+
         self.retranslateUi(MainWindow)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
-        #displayint the map
-        #self.view.setHtml(data.getvalue().decode())
-        """#with open('index.html','rb') as f:
-            data=io.BytesIO(f.read())
-        layout = QVBoxLayout()
-        self.setLayout(layout)
 
-        webView = QWebEngineView()
-        webView.setHtml(data.getvalue().decode())
-        layout.addWidget(webView)"""
 
 
 
