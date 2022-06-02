@@ -23,7 +23,7 @@
             <meta name="viewport" content="width=device-width,
                 initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
             <style>
-                #map_b132b7dd91b17432ddc5d08c108b4406 {
+                #map_fef832393931e8d1bc6cab691acafbed {
                     position: relative;
                     width: 100.0%;
                     height: 100.0%;
@@ -35,17 +35,17 @@
 </head>
 <body>    
     
-            <div class="folium-map" id="map_b132b7dd91b17432ddc5d08c108b4406" ></div>
+            <div class="folium-map" id="map_fef832393931e8d1bc6cab691acafbed" ></div>
         
 </body>
 <script>    
     
-            var map_b132b7dd91b17432ddc5d08c108b4406 = L.map(
-                "map_b132b7dd91b17432ddc5d08c108b4406",
+            var map_fef832393931e8d1bc6cab691acafbed = L.map(
+                "map_fef832393931e8d1bc6cab691acafbed",
                 {
-                    center: [34.0485, -118.25894],
+                    center: [34.062774, -118.239546],
                     crs: L.CRS.EPSG3857,
-                    zoom: 13,
+                    zoom: 15,
                     zoomControl: true,
                     preferCanvas: false,
                 }
@@ -55,90 +55,45 @@
 
         
     
-            var tile_layer_891f7f47dfb291beab7083f7a33783f2 = L.tileLayer(
+            var tile_layer_b1babd3066200a37728a06dbda8b6edf = L.tileLayer(
                 "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
                 {"attribution": "Data by \u0026copy; \u003ca href=\"http://openstreetmap.org\"\u003eOpenStreetMap\u003c/a\u003e, under \u003ca href=\"http://www.openstreetmap.org/copyright\"\u003eODbL\u003c/a\u003e.", "detectRetina": false, "maxNativeZoom": 18, "maxZoom": 18, "minZoom": 0, "noWrap": false, "opacity": 1, "subdomains": "abc", "tms": false}
-            ).addTo(map_b132b7dd91b17432ddc5d08c108b4406);
+            ).addTo(map_fef832393931e8d1bc6cab691acafbed);
         
     
-            var marker_baf51812bebf655b0d9256b4a251fd15 = L.marker(
-                [34.0485, -118.25894],
+            var marker_47a355204c71dfe45fd48bdc05fa544e = L.marker(
+                [34.062774, -118.239546],
                 {}
-            ).addTo(map_b132b7dd91b17432ddc5d08c108b4406);
+            ).addTo(map_fef832393931e8d1bc6cab691acafbed);
         
     
-            var icon_02d72f12d3d1e1407d62db09f13f8fb1 = L.AwesomeMarkers.icon(
+            var icon_9c751f63724fa8e09bd7db73c81c60f6 = L.AwesomeMarkers.icon(
                 {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "red", "prefix": "glyphicon"}
             );
-            marker_baf51812bebf655b0d9256b4a251fd15.setIcon(icon_02d72f12d3d1e1407d62db09f13f8fb1);
+            marker_47a355204c71dfe45fd48bdc05fa544e.setIcon(icon_9c751f63724fa8e09bd7db73c81c60f6);
         
     
-            var marker_36644aae5edf6e5e5dabd5c998f727aa = L.marker(
-                [34.02851, -118.25667],
+            var marker_285e286422ba4da1b5b59f220c4b8932 = L.marker(
+                [34.06428, -118.23894],
                 {}
-            ).addTo(map_b132b7dd91b17432ddc5d08c108b4406);
+            ).addTo(map_fef832393931e8d1bc6cab691acafbed);
         
     
-            var icon_75b37f777b3ce864dad7ac22b4aa498d = L.AwesomeMarkers.icon(
-                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "red", "prefix": "glyphicon"}
-            );
-            marker_36644aae5edf6e5e5dabd5c998f727aa.setIcon(icon_75b37f777b3ce864dad7ac22b4aa498d);
-        
-    
-        function geo_json_6b32b62b48d0d5d76f3bf81353ba2a14_styler(feature) {
-            switch(feature.id) {
-                default:
-                    return {"fillColor": "#228B22", "lineColor": "#228B22"};
-            }
-        }
-
-        function geo_json_6b32b62b48d0d5d76f3bf81353ba2a14_onEachFeature(feature, layer) {
-            layer.on({
-            });
-        };
-        var geo_json_6b32b62b48d0d5d76f3bf81353ba2a14 = L.geoJson(null, {
-                onEachFeature: geo_json_6b32b62b48d0d5d76f3bf81353ba2a14_onEachFeature,
-            
-                style: geo_json_6b32b62b48d0d5d76f3bf81353ba2a14_styler,
-        });
-
-        function geo_json_6b32b62b48d0d5d76f3bf81353ba2a14_add (data) {
-            geo_json_6b32b62b48d0d5d76f3bf81353ba2a14
-                .addData(data)
-                .addTo(map_b132b7dd91b17432ddc5d08c108b4406);
-        }
-            geo_json_6b32b62b48d0d5d76f3bf81353ba2a14_add({"bbox": [-118.258955, 34.04851, -118.258528, 34.048615], "features": [{"bbox": [-118.258955, 34.04851, -118.258528, 34.048615], "geometry": {"coordinates": [[-118.258955, 34.04851], [-118.25887, 34.048603], [-118.25876, 34.048527], [-118.258687, 34.048615], [-118.258528, 34.048513]], "type": "LineString"}, "id": "0", "properties": {"segments": [{"distance": 0.057, "duration": 40.7, "steps": [{"distance": 0.013, "duration": 9.3, "instruction": "Head northeast on South Flower Street", "name": "South Flower Street", "type": 11, "way_points": [0, 1]}, {"distance": 0.013, "duration": 9.5, "instruction": "Turn right", "name": "-", "type": 1, "way_points": [1, 2]}, {"distance": 0.012, "duration": 8.6, "instruction": "Turn left", "name": "-", "type": 0, "way_points": [2, 3]}, {"distance": 0.019, "duration": 13.4, "instruction": "Turn right onto West 7th Street", "name": "West 7th Street", "type": 1, "way_points": [3, 4]}, {"distance": 0.0, "duration": 0.0, "instruction": "Arrive at West 7th Street, on the right", "name": "-", "type": 10, "way_points": [4, 4]}]}], "summary": {"distance": 0.057, "duration": 40.7}, "way_points": [0, 4]}, "type": "Feature"}], "metadata": {"attribution": "openrouteservice.org | OpenStreetMap contributors", "engine": {"build_date": "2022-02-18T19:37:41Z", "graph_date": "2022-05-24T04:29:43Z", "version": "6.7.0"}, "query": {"coordinates": [[-118.25894, 34.0485], [-118.25854, 34.0485]], "format": "geojson", "profile": "foot-walking", "units": "km"}, "service": "routing", "timestamp": 1653942512285}, "type": "FeatureCollection"});
-
-        
-    
-            var marker_750682b1ef26b61d7aa9fef20b12149c = L.marker(
-                [34.0485, -118.25854],
+            var marker_3ff1edaf2c16684bfccf7d775db0e64f = L.marker(
+                [34.06056, -118.23833],
                 {}
-            ).addTo(map_b132b7dd91b17432ddc5d08c108b4406);
+            ).addTo(map_fef832393931e8d1bc6cab691acafbed);
         
     
-            var icon_53282bc67f0024be1a6661588c01883a = L.AwesomeMarkers.icon(
-                {"extraClasses": "fa-rotate-0", "icon": "bicycle", "iconColor": "white", "markerColor": "blue", "prefix": "fa"}
-            );
-            marker_750682b1ef26b61d7aa9fef20b12149c.setIcon(icon_53282bc67f0024be1a6661588c01883a);
+            var marker_1b31ed163953d179f0472613800520e3 = L.marker(
+                [34.06339, -118.23616],
+                {}
+            ).addTo(map_fef832393931e8d1bc6cab691acafbed);
         
     
-
-        function geo_json_bf769272aa77afb4121e95c2c1f9c445_onEachFeature(feature, layer) {
-            layer.on({
-            });
-        };
-        var geo_json_bf769272aa77afb4121e95c2c1f9c445 = L.geoJson(null, {
-                onEachFeature: geo_json_bf769272aa77afb4121e95c2c1f9c445_onEachFeature,
-            
-        });
-
-        function geo_json_bf769272aa77afb4121e95c2c1f9c445_add (data) {
-            geo_json_bf769272aa77afb4121e95c2c1f9c445
-                .addData(data)
-                .addTo(map_b132b7dd91b17432ddc5d08c108b4406);
-        }
-            geo_json_bf769272aa77afb4121e95c2c1f9c445_add({"bbox": [-118.264394, 34.028477, -118.255413, 34.048615], "features": [{"bbox": [-118.264394, 34.028477, -118.255413, 34.048615], "geometry": {"coordinates": [[-118.258528, 34.048513], [-118.258687, 34.048615], [-118.25876, 34.048527], [-118.258789, 34.048516], [-118.25988, 34.04734], [-118.259951, 34.047279], [-118.260022, 34.047191], [-118.260083, 34.047126], [-118.259658, 34.046833], [-118.259201, 34.046557], [-118.259978, 34.045736], [-118.26041, 34.045255], [-118.260486, 34.045181], [-118.260375, 34.04511], [-118.260469, 34.045011], [-118.261623, 34.043803], [-118.261704, 34.043719], [-118.261764, 34.043654], [-118.26235, 34.043024], [-118.262728, 34.042619], [-118.263008, 34.042317], [-118.263069, 34.042252], [-118.263143, 34.042173], [-118.263726, 34.041546], [-118.26418, 34.04107], [-118.264286, 34.040959], [-118.26434, 34.040902], [-118.264394, 34.040846], [-118.264288, 34.040777], [-118.26386, 34.0405], [-118.26341, 34.040208], [-118.263294, 34.040133], [-118.263206, 34.040076], [-118.262748, 34.039779], [-118.262423, 34.039569], [-118.262217, 34.039436], [-118.261683, 34.039089], [-118.261139, 34.038737], [-118.260271, 34.038175], [-118.260007, 34.038003], [-118.259963, 34.037975], [-118.25983, 34.037889], [-118.259363, 34.037586], [-118.25884, 34.037245], [-118.258351, 34.036926], [-118.257845, 34.036607], [-118.25733, 34.036281], [-118.25769, 34.035848], [-118.258274, 34.035137], [-118.259105, 34.034135], [-118.259192, 34.034025], [-118.259934, 34.033096], [-118.259414, 34.032802], [-118.25888, 34.032499], [-118.258056, 34.032068], [-118.257354, 34.031722], [-118.257305, 34.031698], [-118.25663, 34.031351], [-118.255708, 34.030878], [-118.255413, 34.030726], [-118.255511, 34.030584], [-118.255777, 34.030167], [-118.255959, 34.029881], [-118.256277, 34.029361], [-118.256465, 34.029082], [-118.256829, 34.02854], [-118.256692, 34.028477]], "type": "LineString"}, "properties": {"segments": [{"distance": 3.176, "duration": 644.3, "steps": [{"distance": 0.019, "duration": 3.7, "instruction": "Head northwest on West 7th Street", "name": "West 7th Street", "type": 11, "way_points": [0, 1]}, {"distance": 0.012, "duration": 7.1, "instruction": "Turn left", "name": "-", "type": 0, "way_points": [1, 2]}, {"distance": 0.198, "duration": 39.6, "instruction": "Turn slight right", "name": "-", "type": 5, "way_points": [2, 7]}, {"distance": 0.103, "duration": 20.6, "instruction": "Turn left", "name": "-", "type": 0, "way_points": [7, 9]}, {"distance": 0.193, "duration": 43.0, "instruction": "Turn right", "name": "-", "type": 1, "way_points": [9, 12]}, {"distance": 0.013, "duration": 2.6, "instruction": "Turn left onto West 9th Street", "name": "West 9th Street", "type": 0, "way_points": [12, 13]}, {"distance": 0.602, "duration": 120.3, "instruction": "Turn right onto South Hope Street", "name": "South Hope Street", "type": 1, "way_points": [13, 27]}, {"distance": 0.825, "duration": 165.1, "instruction": "Turn left onto West 12th Street", "name": "West 12th Street", "type": 0, "way_points": [27, 46]}, {"distance": 0.428, "duration": 85.6, "instruction": "Turn right onto Santee Street", "name": "Santee Street", "type": 1, "way_points": [46, 51]}, {"distance": 0.493, "duration": 98.6, "instruction": "Turn left onto East 15th Street", "name": "East 15th Street", "type": 0, "way_points": [51, 59]}, {"distance": 0.276, "duration": 55.2, "instruction": "Turn right onto San Pedro Street", "name": "San Pedro Street", "type": 1, "way_points": [59, 65]}, {"distance": 0.014, "duration": 2.9, "instruction": "Turn left onto East 18th Street", "name": "East 18th Street", "type": 0, "way_points": [65, 66]}, {"distance": 0.0, "duration": 0.0, "instruction": "Arrive at East 18th Street, on the left", "name": "-", "type": 10, "way_points": [66, 66]}]}], "summary": {"distance": 3.176, "duration": 644.3}, "way_points": [0, 66]}, "type": "Feature"}], "metadata": {"attribution": "openrouteservice.org | OpenStreetMap contributors", "engine": {"build_date": "2022-02-18T19:37:41Z", "graph_date": "2022-05-22T08:30:37Z", "version": "6.7.0"}, "query": {"coordinates": [[-118.25854, 34.0485], [-118.25667, 34.02851]], "format": "geojson", "profile": "cycling-regular", "units": "km"}, "service": "routing", "timestamp": 1653942512352}, "type": "FeatureCollection"});
-
+            var marker_dd1e0f1eea012c9eda9d28810dec57d4 = L.marker(
+                [34.06318, -118.24588],
+                {}
+            ).addTo(map_fef832393931e8d1bc6cab691acafbed);
         
 </script>

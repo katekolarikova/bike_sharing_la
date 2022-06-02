@@ -56,7 +56,7 @@ class CoreFunctions():
     def draw_map_points(self, user_position, points):
         map = folium.Map(location=user_position, zoom_start=15)
         icon = folium.Icon(color="red")
-        folium.Marker(location=[34.04862, -118.25874], icon=icon).add_to(map)
+        folium.Marker(location=user_position, icon=icon).add_to(map)
         for point in range(0, len(points)):
             folium.Marker(points[point]).add_to(map)
 
@@ -88,7 +88,7 @@ class CoreFunctions():
             k_stations = int(num_k)
             station_info = self.parse_geo_data_stations()
             position_data_split = user_position.split(',')
-            user_position = (float(position_data_split[0][1:]), float(position_data_split[1][:-1]))
+            user_position = (float(position_data_split[0]), float(position_data_split[1]))
         except ValueError:
             self.print_error('Something went wrong... Please check the input validity')
             return -1
