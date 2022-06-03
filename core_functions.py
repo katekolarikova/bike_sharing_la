@@ -123,7 +123,7 @@ class CoreFunctions():
         ors_key = API_KEYS.OPEN_ROUTE
         client = ors.Client(key=ors_key)
         available_routes = []
-        closest_stations = self.find_nearest_stations(str(start_location), 6, 'bikes')
+        closest_stations = self.find_nearest_stations(str(start_location[0])+','+str(start_location[1]), 6, 'bikes')
 
         direct_route_coordinates = ((start_location[1], start_location[0]), (end_location[1], end_location[0]))
         route_walking = client.directions(coordinates=direct_route_coordinates, profile='foot-walking',
@@ -160,6 +160,7 @@ class CoreFunctions():
 
         # sorted route from fastest
         available_routes = sorted(available_routes, key=lambda item: item['duration'], reverse=False)
+        print(available_routes[0])
         return available_routes[0]
 
     # add given route to the folium map
@@ -191,10 +192,10 @@ class CoreFunctions():
         # parse data from user
         try:
             start_location_split = start_location.split(',')
-            start_location = (float(start_location_split[0][1:]), float(start_location_split[1][:-1]))
+            start_location = (float(start_location_split[0]), float(start_location_split[1]))
 
             end_location_split = end_location.split(',')
-            end_location = (float(end_location_split[0][1:]), float(end_location_split[1][:-1]))
+            end_location = (float(end_location_split[0]), float(end_location_split[1]))
         except ValueError:
             self.print_error('Something went wrong... Please check the input validity')
             return -1
