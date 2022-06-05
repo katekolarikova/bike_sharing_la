@@ -1,7 +1,6 @@
 import io
 from PyQt5 import QtCore, QtGui, QtWidgets, QtWebEngineWidgets
-from folium import folium
-from core_functions import CoreFunctions
+import core_functions
 
 """
 Set up the GUI
@@ -96,9 +95,7 @@ class Ui_MainWindow(object):
         self.search_bikes_button = QtWidgets.QPushButton(self.centralwidget)
         self.search_bikes_button.setGeometry(QtCore.QRect(430, 240, 90, 28))
         self.search_bikes_button.setObjectName("search_bikes_button")
-        cf=CoreFunctions()
-        self.search_bikes_button.clicked.connect(lambda:
-                                                 cf.find_nearest_stations(self.user_location_input.text(),
+        self.search_bikes_button.clicked.connect(lambda:core_functions.find_nearest_stations(self.user_location_input.text(),
                                                                                                  self.k_bikes_input.text(),'bikes'))
 
         self.search_bikes_button.clicked.connect(lambda :self.draw_map())
@@ -129,7 +126,7 @@ class Ui_MainWindow(object):
         self.search_docks_button.setObjectName("search_docks_button")
 
         self.search_docks_button.clicked.connect(lambda:
-                                                 cf.find_nearest_stations(self.user_location_input.text(),
+                                                 core_functions.find_nearest_stations(self.user_location_input.text(),
                                                                                      self.k_docks_input.text(),'docks'))
 
 
@@ -172,7 +169,7 @@ class Ui_MainWindow(object):
         self.shortest_route_button.setObjectName("shortest_route_button")
 
         self.shortest_route_button.clicked.connect(lambda:
-                                                       cf.find_route_between_points(self.point1_input.text(),
+                                                       core_functions.find_route_between_points(self.point1_input.text(),
                                                                                 self.point2_input.text()))
 
         self.shortest_route_button.clicked.connect(lambda: self.draw_map())

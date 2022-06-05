@@ -19,12 +19,11 @@ Live data are downloaded from official site 'http://bikeshare.metro.net and the 
 
 from PyQt5 import QtWidgets
 from ui_setup import Ui_MainWindow
-from core_functions import CoreFunctions
-import sys,time
+import core_functions
+import sys
 
 if __name__ == "__main__":
-    cf = CoreFunctions()
-    cf.clean_map()
+    core_functions.clean_map()
     app = QtWidgets.QApplication(sys.argv)
     MainWindow = QtWidgets.QMainWindow()
     ui = Ui_MainWindow()
