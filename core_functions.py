@@ -79,6 +79,7 @@ def find_nearest_stations(user_position, num_k, dock_bikes):
     type = 'bikes'
 
     download_live_data()
+    # parse data from user
     try:
         if dock_bikes == 'docks':
             type = 'docks'
@@ -115,7 +116,6 @@ def find_nearest_stations(user_position, num_k, dock_bikes):
 # start_location: first point
 # end_location: second point
 def find_shortest_route( start_location, end_location):
-    # direct route by walks
     ors_key = API_KEYS.OPEN_ROUTE
     client = ors.Client(key=ors_key)
     available_routes = []
@@ -159,6 +159,8 @@ def find_shortest_route( start_location, end_location):
     return available_routes[0]
 
 # add given route to the folium map
+# start_location: first point
+# end_location: second point
 def draw_route_map(start_location, end_location, route):
     map = folium.Map(location=start_location, zoom_start=13)
     style = {'fillColor': '#228B22', 'lineColor': '#228B22'}
@@ -181,9 +183,6 @@ def draw_route_map(start_location, end_location, route):
 # start_location: first point
 # end_location: second point
 def find_route_between_points(start_location, end_location):
-    # (34.04850, -118.25894)
-    # (34.02851,-118.25667)
-
     # parse data from user
     try:
         start_location_split = start_location.split(',')

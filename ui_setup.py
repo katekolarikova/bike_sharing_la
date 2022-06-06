@@ -4,6 +4,7 @@ import core_functions
 
 """
 Set up the GUI
+Frontend of the app
 """
 class Ui_MainWindow(object):
 

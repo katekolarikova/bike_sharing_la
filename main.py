@@ -1,13 +1,13 @@
 """
 Katerina Kolarikova
-Applied Data Science with Python, Ostbayerische technische hochschule regensburg
+Applied Data Science with Python, Ostbayerische technische hochschule Regensburg
 30.5.2022
 
-Goal of this project is to develop the application processing data about share bikes in LA.
+Goal of this project is to develop the application processing data about shared bikes in LA.
 Live data are downloaded from official site 'http://bikeshare.metro.net and the main functions are :
  -  display K nearest stations with availble bikes around given location
  -  display K nearest stations with availble docks around given location
- -  find fastest way between two points using sharing bike and feet
+ -  find fastest route between two points using shared bike and feet
 
  Used Libraries:
  - folium - map client

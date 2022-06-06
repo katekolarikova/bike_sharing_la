@@ -1,15 +1,15 @@
 Name: Katerina Kolarikova
 Date: 5.6.2022
 GitHub: https://github.com/katekolarikova/bike_sharing_la
-Course: Applied data Science with Python
+Course: Applied Data Science with Python
 School: Ostbayerische Technische Hochschule
 
-This application is used for processing data about bikes in LA. The main function are searching for stations with
+This application is used for processing data about bikes in LA. The main functions are searching for stations with
 available bikes/docks and calculating the route.
 
 Part of this application is also a documentation - check kolarikova_project_description.pdf
 
-For succesfull running the application please:
+For successful running the application please:
 - be connected to the internet
 - insert the coordination input in form latitude,longitude
     - examples:
@@ -20,12 +20,13 @@ For succesfull running the application please:
         34.010800, -118.494234
 - insert the number k as a whole number
 - install following libraries :
-    - PyQT pip3 install pyqt5
-    - geopandas pip3 install geopandas
-    - geopy: pip3 install geopy
-    - folium: pip3 install folium
-    - openrouteservice: pip3 install openrouteservice
-- for running the application use scipt main.py
+    - PyQT:pip install PyQt5, https://pypi.org/project/PyQt5/
+    - geopandas: pip install geopandas, https://geopandas.org/en/stable/getting_started/install.html
+    - geopy: pip install geopy, https://pypi.org/project/geopy/
+    - folium: pip install folium, https://pypi.org/project/folium/
+    - pip install -r requirements-dev.txt
+    - openrouteservice: pip install openrouteservice, https://pypi.org/project/openrouteservice/
+- for running the application use script main.py
 
-I also recommended running application in its own virtual enviroment
+I also recommended running application in its own virtual environment
     -python3 -m venv path_to_the_project
